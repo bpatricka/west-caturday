@@ -1,0 +1,128 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.maincontainer{
+    display: flex;
+    height: calc(100vh - 300px);
+    background-color: #343643;
+    padding-top: 25px;
+}
+
+.leftcol{
+    width: 40%;
+}
+
+.rightcol{
+    width: 60%;
+}
+
+.myinfo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: bold;
+    font-size: x-large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-bottom-color: #9597a8;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    margin-bottom: 5px;
+}
+
+.mainwrapper{
+    height: 100%;
+    background-color: #343643;
+}
+
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: linen;
+    border-top: 1px solid #737587;
+    width: 100%;
+    height: 50px;
+    background-color: #343643;
+}
+
+.myinfo > li{
+    padding: 5px;
+}
+
+.profilepic{
+    height: 250px;
+    background-image: url('./../../public/corporatecrew.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.profilepanel{
+    margin: 10px;
+    padding: 10px;
+    background-color: #737587;
+    box-shadow: 0 0 12px 5px #222;
+}
+
+.profilepanel:hover{
+    box-shadow: 0 0 12px 5px #111;
+}
+
+.work:hover{
+    box-shadow: 0 0 12px 5px #111;
+}
+
+.work{
+    margin: 10px;
+    padding: 10px;
+    background-color: #737587;
+    box-shadow: 0 0 12px 5px #222;
+}
+
+.skillheader{
+    color: #2c3b6a;
+    font-size: x-large;
+    font-weight: 800;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.langheader{
+    color: #2c3b6a;
+    font-size: x-large;
+    font-weight: 800;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.education{
+    margin: 10px;
+    padding: 10px;
+    background-color: #737587;
+    box-shadow: 0 0 7px 5px #222;
+}
+
+.education:hover{
+    box-shadow: 0 0 12px 5px #111;
+}
+
+.Applogo {
+    height: 60px;
+    width: 80px;
+    pointer-events: none;
+}
+  
+@media (prefers-reduced-motion: no-preference) {
+    .Applogo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+  
+@keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
