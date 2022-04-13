@@ -4,6 +4,15 @@ ul {
     padding: 0;
 }
 
+.loading{
+    width: 100%;
+    height: 100px;
+    background-color: #1d2439;
+    color: linen;
+    font-size: xx-large;
+    z-index: 1014;
+}
+
 .maincontainer{
     display: flex;
     height: calc(100vh - 300px);
@@ -79,6 +88,18 @@ ul {
     padding: 10px;
     background-color: #737587;
     box-shadow: 0 0 12px 5px #222;
+}
+
+.workheader{
+    font-size: x-large;
+    font-weight: 600;
+    color: #1d2439;
+}
+
+.jobname{
+    font-size: x-large;
+    font-weight: 600;
+    color: #1d2439;
 }
 
 .skillheader{

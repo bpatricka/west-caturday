@@ -5,95 +5,65 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
     const [loading, setLoading] = useState(false);
-    const [colleges, setColleges] = useState(null);
-    const [jobs, setJobs] = useState(null);
-    const [awards, setAwards] = useState(null);
-    const [projects, setProjects] = useState(null);
-    const [activities, setActivities] = useState(null);
     const [mounted, setMounted] = useState(null);
+    let loadingcontent;
 
-    const fetchColleges = async () => {
+    const [profile, setProfile] = useState({
+        colleges: null,
+        jobs: null,
+        awards: null,
+        projects: null,
+        activities: null
+    });
+
+    const fetchInfo = async () => {
         setLoading(true);
         setMounted(true);
         if (mounted) {
             try {
-                const response = await fetch('http://localhost:8000/colleges');
-                setColleges(await response.json());
+                const response1 = await fetch('http://localhost:8000/colleges');
+                const response2 = await fetch('http://localhost:8000/jobs');
+                const response3 = await fetch('http://localhost:8000/activities');
+                const response4 = await fetch('http://localhost:8000/awards');
+                const response5 = await fetch('http://localhost:8000/projects');
+
+                setProfile({colleges: await response1.json(), 
+                    jobs: await response2.json(),
+                    activities: await response3.json(),
+                    awards: await response4.json(),
+                    projects: await response5.json()
+                });
+                setLoading(false);
             } catch(e) {
-                console.log('I got a bad feeling about this.');
+                console.log(e);
             }
         }
+        setLoading(false);
     }
 
-    const fetchJobs = async () => {
-        setLoading(true);
-        setMounted(true);
-        if (mounted) {
-            try {
-                const response = await fetch('http://localhost:8000/jobs');
-                setJobs(await response.json());
-            } catch(e) {
-                console.log('I got a bad feeling about this.');
-            }
-        }
-    }
-
-    const fetchAwards = async () => {
-        setLoading(true);
-        setMounted(true);
-        if (mounted) {
-            try {
-                const response = await fetch('http://localhost:8000/awards');
-                setAwards(await response.json());
-            } catch(e) {
-                console.log('I got a bad feeling about this.');
-            }
-        }
-    }
-
-    const fetchActivities = async () => {
-        setLoading(true);
-        setMounted(true);
-        if (mounted) {
-            try {
-                const response = await fetch('http://localhost:8000/activities');
-                setActivities(await response.json());
-            } catch(e) {
-                console.log('I got a bad feeling about this.');
-            }
-        }
-    }
-
-    const fetchProjects = async () => {
-        setLoading(true);
-        setMounted(true);
-        if (mounted) {
-            try {
-                const response = await fetch('http://localhost:8000/projects');
-                setProjects(await response.json());
-            } catch(e) {
-                console.log('I got a bad feeling about this.');
-            }
-        }
+    if (loading) {
+        loadingcontent = <div style={{position: "absolute", 
+        top: "500px", 
+        backgroundColor: "#1bc38f", 
+        width: "100%", 
+        height: "200px"}}><span style={{display: "flex", 
+            justifyContent: "center", 
+            alignItems: "center", 
+            height: '200px',
+            fontSize: 'xx-large',
+            fontWeight: '700'
+        }}>Loading...</span></div>;
     }
 
     useEffect(() => {
-        fetchColleges();
-        fetchJobs();
-        fetchActivities();
-        fetchAwards();
-        fetchProjects();
-    }, []);
-
-    if (jobs) {
-        console.log(Object.values(jobs[0])[1]);
-    }
-        
+        fetchInfo();
+    }, [profile]);
 
     const year = new Date().getFullYear();
     
     return (
         <>
+        {loadingcontent}
         <div className={styles.maincontainer}>
             <div className={styles.leftcol}>
                 <div className={styles.profilepanel} id="left-profile-panel">
@@ -112,7 +82,17 @@ const Home = () => {
                 <div className={styles.work} id="work-experience">
                     <div className={styles.workheader}>Work Experience</div>
                     <ul className={styles.workul} id="work-list">
-                        {jobs === null ? null : (Object.values(jobs)).map((job) => <li key={job._id}>{job[1]}</li>)}
+                        {profile.jobs &&
+                            profile.jobs.map(job => {
+                                return <li key={job.name}>{<>
+                                    <div className={styles.jobname}>{job.name}</div>
+                                    <div>{job.duties}</div>
+                                    <div>{}</div>
+                                    <div>{job.enddate}</div>
+                                </>
+                                    }
+                                </li>
+                            })}
                         {/* <li className={styles.workli} id="first-job">
                             <div id="job-title">Job Title</div>
                             <div id="job-date">Dates</div>
@@ -153,7 +133,7 @@ const Home = () => {
 
         </div>            
         <div className={styles.footer}>
-            <FaRegCopyright />{year} arb1z webpage
+            <FaRegCopyright />{year} arb1z webpages
         </div>
         </>
     )
