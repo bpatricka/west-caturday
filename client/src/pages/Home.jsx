@@ -1,6 +1,6 @@
 import styles from "./Home.module.css";
 import "./Home.module.css";
-import { FaBriefcase, FaHome, FaEnvelope, FaRegCopyright } from "react-icons/fa";
+import { FaBriefcase, FaHome, FaEnvelope, FaRegCopyright, FaArrowRight } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 const Home = () => {
@@ -18,8 +18,6 @@ const Home = () => {
 
     const fetchInfo = async () => {
         setLoading(true);
-        setMounted(true);
-        if (mounted) {
             try {
                 const response1 = await fetch('http://localhost:8000/colleges');
                 const response2 = await fetch('http://localhost:8000/jobs');
@@ -37,7 +35,6 @@ const Home = () => {
             } catch(e) {
                 console.log(e);
             }
-        }
         setLoading(false);
     }
 
@@ -84,12 +81,20 @@ const Home = () => {
                     <ul className={styles.workul} id="work-list">
                         {profile.jobs &&
                             profile.jobs.map(job => {
-                                return <li key={job.name}>{<>
+                                return <li key={job.name}>{
+                                <div className={styles.jobitem}>
                                     <div className={styles.jobname}>{job.name}</div>
-                                    <div>{job.duties}</div>
-                                    <div>{}</div>
-                                    <div>{job.enddate}</div>
-                                </>
+                                    <div className={styles.jobdates}>                                    
+                                        <div className={styles.startdate}>
+                                            {new Date(job.startdate).getMonth()+1 + " - "}{new Date(job.startdate).getFullYear === 'NaN' ? 'current' : new Date(job.startdate).getFullYear()}
+                                        </div>
+                                        <div><FaArrowRight /></div>
+                                        <div className={styles.enddate}>
+                                            {new Date(job.enddate).getMonth()+1 + " - " + new Date(job.enddate).getFullYear()}
+                                        </div>
+                                    </div>
+                                    <div className={styles.duties}>{job.duties}</div>
+                                </div>
                                     }
                                 </li>
                             })}

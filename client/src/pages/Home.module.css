@@ -15,7 +15,7 @@ ul {
 
 .maincontainer{
     display: flex;
-    height: calc(100vh - 300px);
+    height: calc(100% - 350px);
     background-color: #343643;
     padding-top: 25px;
 }
@@ -55,6 +55,8 @@ ul {
     width: 100%;
     height: 50px;
     background-color: #343643;
+    position: fixed;
+    bottom: 0px;
 }
 
 .myinfo > li{
@@ -90,16 +92,43 @@ ul {
     box-shadow: 0 0 12px 5px #222;
 }
 
+.workul {
+    display: flex;
+    flex-direction: column;
+}
+
 .workheader{
     font-size: x-large;
     font-weight: 600;
     color: #1d2439;
 }
 
+.jobitem{
+
+}
+
 .jobname{
     font-size: x-large;
     font-weight: 600;
     color: #1d2439;
+    width: 100%;
+}
+
+.jobdates{
+    display: flex;
+    justify-content: space-around;
+}
+
+.startdate{
+
+}
+
+.enddate{
+
+}
+
+.duties{
+
 }
 
 .skillheader{
